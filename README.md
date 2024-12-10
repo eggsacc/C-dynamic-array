@@ -24,6 +24,9 @@ for(int i = 0; i < 5; i++)
 for(int i = 0; i < vec->size; i++)
 {
   printf("int_vec[%d]: %d", i, *((int*)get(int_vec, i)));
+
+  // Or
+  printf("int_vec[%d]: %d", i, ((int*)int_vec->array)[i]);
 }
 ```
 
