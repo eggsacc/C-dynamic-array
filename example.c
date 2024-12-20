@@ -1,4 +1,4 @@
-#include "vector.h"
+#include"vector.h"
 
 int main(void)
 {
@@ -19,6 +19,8 @@ int main(void)
     for(int i = 0; i < 5; i++)
     {
         printf("int_vec[%d]: %d, float_vec[%d]: %f, char_vec[%d]: %c\n",
-                i, *((int*)get(int_vec, i)), i, *((float*)get(float_vec, i)), i, *((char*)get(char_vec, i)));
+                i, _get(int, int_vec, i), 
+                i, _get(float, float_vec, i), 
+                i, *((char*)get(char_vec, i)));
     }
 }

@@ -5,6 +5,8 @@
 #include<stdio.h>
 #include<string.h>
 
+#define _get(type, vector, index) *((type*)get(vector, index))
+
 /* 
  * Dynamic array struct
  * Stores malloced address (array),
@@ -19,7 +21,7 @@ typedef struct {
     size_t size;
 }vector;
 
-extern vector* newVector(size_t data_size, size_t initial_capacity);
+vector* newVector(size_t data_size, size_t initial_capacity);
 
 void append(vector* vec, void* value);
 void insert(vector* vec, void* value, size_t index);

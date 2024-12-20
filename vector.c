@@ -1,10 +1,10 @@
-#include"vector.h"
+#include "vector.h"
 
 /* Creates new vector;
  * allocates memory to the vector struct and data field.
  * If initial array size if unknown, defaults to 8 bytes.
  */
-extern vector* newVector(size_t data_size, size_t initial_capacity)
+vector* newVector(size_t data_size, size_t initial_capacity)
 {
     initial_capacity = initial_capacity ? initial_capacity : 8;
     vector* vec = malloc(sizeof(vector));
@@ -29,7 +29,7 @@ extern vector* newVector(size_t data_size, size_t initial_capacity)
 /*
  * Append a value to the end of vector
  */
-extern void append(vector* vec, void* value)
+void append(vector* vec, void* value)
 {
     if(vec->size == vec->capacity)
     {
@@ -49,7 +49,7 @@ extern void append(vector* vec, void* value)
 /* 
  * Insert value at index 
  */
-extern void insert(vector* vec, void* value, size_t index)
+void insert(vector* vec, void* value, size_t index)
 {
     // Check if insertion index is beyond contiguous range
     if(index > vec->size)
@@ -85,7 +85,7 @@ extern void insert(vector* vec, void* value, size_t index)
 /*
  * Remove last element, decrements size variable so last element is no longer accessible
  */
-extern void pop(vector* vec)
+void pop(vector* vec)
 {
     // Check if array is empty
     if(vec->size > 0)
@@ -101,7 +101,7 @@ extern void pop(vector* vec)
 /*
  * Deletes an element at index
  */
-extern void delete_element(vector* vec, size_t index)
+void delete_element(vector* vec, size_t index)
 {
     // Check if index is outside array range
     if(index >= vec->size)
@@ -122,7 +122,7 @@ extern void delete_element(vector* vec, size_t index)
 /*
  * Access element in array
  */
-extern void* get(vector* vec, size_t index)
+void* get(vector* vec, size_t index)
 {
     // Check if index to access is outside array length
     if(index >= vec->size)
@@ -138,7 +138,7 @@ extern void* get(vector* vec, size_t index)
 /* 
  * Destroy (free) dynamic array
  */
-extern void destroy(vector* vec)
+void destroy(vector* vec)
 {
     if(vec != NULL && vec->array != NULL)
     {
