@@ -2,25 +2,61 @@
 
 int main(void)
 {
-    vector* int_vec = newVector(sizeof(int), 0);
-    vector* float_vec = newVector(sizeof(float), 0);
-    vector* char_vec = newVector(sizeof(char), 0);
+    cvector* int_vec = CreateVector(sizeof(int), 0);
+    cvector* float_vec = CreateVector(sizeof(float), 0);
+    cvector* char_vec = CreateVector(sizeof(char), 0);
 
-    char chars[5] = {'A', 'B', 'C', 'D', 'E'};
+    char chars[3] = {'A', 'B', 'C'};
 
-    for(int i = 0; i < 5; i++)
+    /* Assign values to vectors */
+    for(int i = 0; i < 3; i++)
     {
-        append(int_vec, &i);
-        float val = (float) i * 0.2;
-        append(float_vec, &val);
-        append(char_vec, &chars[i]);
+        cvector_append(int_vec, (void*)&i);
+        float val = (float) i * 3.1415;
+        cvector_append(float_vec, (void*)&val);
+        cvector_append(char_vec, (void*)&chars[i]);
     }
+    printf("int_vec capacity: %d\n", int_vec->capacity);
+    printf("float_vec capacity: %d\n", float_vec->capacity);
+    printf("char_vec capacity: %d\n", char_vec->capacity);
 
-    for(int i = 0; i < 5; i++)
+    /* Print out elements in each vector */
+    for(int i = 0; i < int_vec->size; i++)
     {
         printf("int_vec[%d]: %d, float_vec[%d]: %f, char_vec[%d]: %c\n",
-                i, _get(int, int_vec, i), 
-                i, _get(float, float_vec, i), 
-                i, *((char*)get(char_vec, i)));
+                i, *((int*)cvector_get(int_vec, i)), 
+                i, cvector_get_type(float_vec, i, float), 
+                i, cvector_get_type(char_vec, i, char));
     }
+
+    /* Insert more elements */
+    for(int i = 0; i < 32; i++)
+    {
+        cvector_append(int_vec, (void*)&i);
+        float val = (float) i;
+        cvector_append(float_vec, (void*)&val);
+        cvector_append(char_vec, (void*)&chars[i%3]);
+    }
+    printf("----------------After inserting 32 new items----------------\n");
+    printf("New int_vec capacity: %d\n", int_vec->capacity);
+    printf("New float_vec capacity: %d\n", float_vec->capacity);
+    printf("New char_vec capacity: %d\n", char_vec->capacity);
+
+    printf("----------------Pop/delete functions----------------\n");
+
+    printf("Current int_vec size: %d\n", int_vec->size);
+    printf("Current float_vec size: %d\n", float_vec->size);
+    /* pop int_vector */
+    printf("Last element in int_vec: %d\n", *((int*)cvector_pop(int_vec)));
+    printf("New int_vec size: %d\n", int_vec->size);
+
+    /* Delete element at index [1] from float_vec */
+    printf("Element at index[1] in float_vec: %f\n", cvector_delete_type(float_vec, 1, float));
+    printf("New float_vec size: %d\n", float_vec->size);
+
+    /* Destroy vectors */
+    cvector_destroy(int_vec);
+    cvector_destroy(float_vec);
+    cvector_destroy(char_vec);
+
 }

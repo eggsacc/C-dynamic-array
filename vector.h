@@ -5,7 +5,12 @@
 #include<stdio.h>
 #include<string.h>
 
-#define _get(type, vector, index) *((type*)get(vector, index))
+/* 
+ * Macros to simplify type-casting
+ */
+#define cvector_get_type(vector, index, type) *((type*)cvector_get(vector, index))
+#define cvector_pop_type(vector, type) *((type*)cvector_pop(vector))
+#define cvector_delete_type(vector, index, type) *((type*)cvector_delete(vector, index))
 
 /* 
  * Dynamic array struct
@@ -19,17 +24,21 @@ typedef struct {
     size_t capacity;
     size_t data_size;
     size_t size;
-}vector;
+}cvector;
 
-vector* newVector(size_t data_size, size_t initial_capacity);
+/*
+ * Functions
+ */
+cvector* CreateVector(size_t data_size, size_t initial_capacity);
 
-void append(vector* vec, void* value);
-void insert(vector* vec, void* value, size_t index);
+void cvector_append(cvector* vec, void* value);
+void cvector_insert(cvector* vec, void* value, size_t index);
 
-void pop(vector* vec);
-void delete_element(vector* vec, size_t index);
+void* cvector_pop(cvector* vec);
+void* cvector_delete(cvector* vec, size_t index);
 
-void* get(vector* vec, size_t index);
-void destroy(vector* vec);
+void* cvector_get(cvector* vec, size_t index);
+
+void cvector_destroy(cvector* vec);
 
 #endif
