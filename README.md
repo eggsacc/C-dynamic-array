@@ -10,13 +10,13 @@ One of the goals of the project was to make the arrays loosely typed, meaning th
 
 ## Functions
 
-1) cvector* CreateVector(size_t data_size, size_t initial_capacity);
-2) void cvector_append(cvector* vec, void* value);
-3) void cvector_insert(cvector* vec, void* value, size_t index);
-4) void* cvector_pop(cvector* vec);
-5) void* cvector_delete(cvector* vec, size_t index);
-6) void* cvector_get(cvector* vec, size_t index);
-7) void cvector_destroy(cvector* vec);
+1) `cvector* CreateVector(size_t data_size, size_t initial_capacity);`
+2) `void cvector_append(cvector* vec, void* value);`
+3) `void cvector_insert(cvector* vec, void* value, size_t index);`
+4) `void* cvector_pop(cvector* vec);`
+5) `void* cvector_delete(cvector* vec, size_t index);`
+6) `void* cvector_get(cvector* vec, size_t index);`
+7) `void cvector_destroy(cvector* vec);`
 
 ## Macros
 
